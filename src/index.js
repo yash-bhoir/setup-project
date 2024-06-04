@@ -1,14 +1,10 @@
-// require('dotenv').config({path : './env'})
-// import mongoose from "mongoose";
-// import {DB_NAME} from "./constants"
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
+import app from "./app.js"; // Import the app configuration
 
 // Configure dotenv to load environment variables
 dotenv.config({ path: './.env' });
-
-const app = express();
 
 // Function to start the server
 const startServer = async () => {
@@ -36,7 +32,6 @@ const startServer = async () => {
 // Start the server
 startServer();
 
-export default app;
 
 
 // import express from "express"
