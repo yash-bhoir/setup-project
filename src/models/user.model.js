@@ -59,4 +59,33 @@ userSchema.method.isPasswordCorrect = async function (password){
     return await bcrypt.compare(password, this.password)
 }
 
+userSchema.methods.generateAccessTokan = function() {
+ return jwt.sign(
+    {
+        _id : this._id,
+        email: this.email,
+        username : this.username,
+        fullname : this.fullname
+    },
+    process.env.ACCESS_TOKAN_SECRET,
+    {
+        expiresIn : process.env.ACCESS_TOKAN_EXPIRY
+    }
+ )
+}
+userSchema.methods.generateRefreshTokan = function() {
+
+    return jwt.sign(
+        {
+            _id : this._id
+        },
+        process.env.REFRESH_TOKAN_SECRET,
+        {
+            expiresIn : process.env.REFRESH_TOKAN_EXPIRY
+        }
+     )
+
+}
+
+
 export const  User = mongoose.model("User", userSchema)
