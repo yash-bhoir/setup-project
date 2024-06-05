@@ -7,7 +7,7 @@ import app from "./app.js"; // Import the app configuration
 dotenv.config({ path: './.env' });
 
 // Function to start the server
-const startServer = async () => {
+const startServer = async () => { 
     try {
         // Connect to MongoDB
         await connectDB();
